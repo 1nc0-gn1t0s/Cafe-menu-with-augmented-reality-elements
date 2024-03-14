@@ -36,12 +36,8 @@ Telegram: https://t.me/lnc0_gn1t0
 
 1) Базы данных / MariaDB
 2) Backend:
-        Python 3.8 (и выше)
-        Flask
-3) Frontend:
-        HTML
-        CSS
-        JavaScript
+        Python 3.8 (и выше), Flask
+3) Frontend: HTML, CSS, JavaScript
 
 [ ЭТАПЫ РАЗРАБОТКИ ]
 
