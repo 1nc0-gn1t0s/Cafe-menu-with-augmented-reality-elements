@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <header class="header header-main">
+            <div class="container">
+                <div class="header__inner">
+                    <a href="" class="logo">
+                        <img src="{{ url_for('static', filename='img/logo_white.svg') }}" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__list-item">
+                                <a href="/restaurants" class="menu__list-link">КАФЕ И РЕСТОРАНЫ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/contacts" class="menu__list-link">КОНТАКТЫ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/log_in" class="menu__list-link">ЛИЧНЫЙ КАБИНЕТ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <section class="top">
+                <div class="container">
+                    <h1 class="title">
+                        Меню кафе и ресторанов с элементами дополненной реальности
+                    </h1>
+                    <a href="/restaurants" class="top__link">
+                        НАЙТИ ЗАВЕДЕНИЕ ПО ВКУСУ
+                    </a>
+                </div>
+            </section>
+            <div class="slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="background-image: url('../../static/img/slide-2.jpg');"></div>
+                        <div class="swiper-slide" style="background-image: url('../../static/img/slide-1.jpg');"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
