@@ -1,6 +1,7 @@
 from flask import render_template, Flask, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
+from re import search
 
 
 from models import app, get_user_by_email, create_user, User, db
@@ -123,12 +124,36 @@ def sigh_up():
             flash('Все поля должны быть заполнены.')
             return redirect(url_for('sigh_up'))
 
-        if password != repeat_password:
-            flash('Пароли не совпадают.')
-            return redirect(url_for('sigh_up'))
-
         if get_user_by_email(email):
             flash('Пользователь с такой почтой уже существует.')
+            return redirect(url_for('sigh_up'))
+
+        if '@' not in email:
+            flash('Почта должна содержать знак "@".')
+            return redirect(url_for('sigh_up'))
+
+        if len(password) <= 8:
+            flash('Пароль должен состоять хотя бы из восьми знаков.')
+            return redirect(url_for('sigh_up'))
+
+        if not bool(search('[a-zA-Z]', password)):
+            flash('Пароль должен содержать хотя бы одну букву.')
+            return redirect(url_for('sigh_up'))
+
+        if password.lower() == password:
+            flash('Пароль должен содержать хотя бы одну заглавную букву.')
+            return redirect(url_for('sigh_up'))
+
+        if password.upper() == password:
+            flash('Пароль должен содержать хотя бы одну строчную букву.')
+            return redirect(url_for('sigh_up'))
+
+        if not bool(search(r'\d', password)):
+            flash('Пароль должен содержать хотя бы одну цифру.')
+            return redirect(url_for('sigh_up'))
+
+        if password != repeat_password:
+            flash('Пароли не совпадают.')
             return redirect(url_for('sigh_up'))
 
         create_user(name, email, password)

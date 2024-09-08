@@ -39,8 +39,17 @@
                 <div class="container">
                     <h2 class="section-title login__title">Авторизация</h2>
                     <form class="form" method="post">
-                        <input type="email" class="form__input" name="email" placeholder="Почта" required>
-                        <input type="password" class="form__input" name="password" placeholder="Пароль" required>
+                        <input class="form__input" name="email" placeholder="Почта">
+                        <input type="password" class="form__input" name="password" placeholder="Пароль">
+                        <div class="flash">
+                            {% for msg in get_flashed_messages() %}
+                                <div class="flash__item">
+                                    <h4>Ошибка!</h4>
+                                    <hr>
+                                    <p>{{ msg }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
                         <button class="form__btn" type="submit">ДАЛЕЕ</button>
                     </form>
                     <p class="login__text">
