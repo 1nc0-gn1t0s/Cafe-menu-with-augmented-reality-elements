@@ -6,7 +6,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'there will be something here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafeAR.db'
 db = SQLAlchemy(app)
 
 
@@ -18,12 +18,14 @@ class User(db.Model, UserMixin):
     role = db.Column(db.Integer, primary_key=False, nullable=False)
     name = db.Column(db.String(300), nullable=False)
     email = db.Column(db.String(300), nullable=False)
+    email_hash = db.Column(db.String(300), nullable=False)
     password_hash = db.Column(db.String(300), nullable=False)
 
-    def __init__(self, role, name, email, password_hash):
+    def __init__(self, role, name, email, email_hash, password_hash):
         self.role = role
         self.name = name
-        self.email = email
+        self.email=email
+        self.email_hash = email_hash
         self.password_hash = password_hash
 
     def __repr__(self):
@@ -41,6 +43,9 @@ class RestaurantChain(db.Model):
     def __init__(self, title, admin):
         self.title = title
         self.admin = admin
+
+    def __repr__(self):
+        return '<RestaurantChain {}>'.format(self.title)
 
 
 class Restaurant(db.Model):
@@ -83,7 +88,7 @@ class Dish(db.Model):
         return '<Dish {}>'.format(self.title)
 
 
-def create_user(role, name, email, password):
+def create_user(name, email, password, role=1):
     """
     Функция для добавления пользователя в базу данных
     :param role: role
@@ -92,14 +97,15 @@ def create_user(role, name, email, password):
     :param password: password
     :return: None
     """
-    new_user = User(role=role, name=name, email=email, password_hash=generate_password_hash(password))
+    new_user = User(role=role, name=name, email=email, email_hash=generate_password_hash(email),
+                    password_hash=generate_password_hash(password))
     db.session.add(new_user)
     db.session.commit()
 
 
 def get_user_by_email(email):
     """
-    Функция для получения пользователя по username
+    Функция для получения пользователя по email
     :param email: email
     :return: None
     """

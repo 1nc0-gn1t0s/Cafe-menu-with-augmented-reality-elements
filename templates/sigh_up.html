@@ -38,11 +38,11 @@
             <section class="sighup">
                 <div class="container">
                     <h2 class="section-title sighup__title">Регистрация</h2>
-                    <form action="#" class="form">
-                        <input type="name" class="form__input" placeholder="Имя">
-                        <input type="email" class="form__input" placeholder="Почта">
-                        <input type="password" class="form__input" placeholder="Пароль">
-                        <input type="password" class="form__input" placeholder="Повторите пароль">
+                    <form method="post" class="form">
+                        <input type="name" class="form__input" name="name" placeholder="Имя" required>
+                        <input type="email" class="form__input" name="email" placeholder="Почта" required>
+                        <input type="password" class="form__input" name="password" placeholder="Пароль" required>
+                        <input type="password" class="form__input" name="repeating" placeholder="Повторите пароль" required>
                         <button class="form__btn" type="submit">ДАЛЕЕ</button>
                     </form>
                     <p class="sighup__text">

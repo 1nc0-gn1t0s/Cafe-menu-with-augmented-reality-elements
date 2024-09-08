@@ -27,7 +27,7 @@
                                 <a href="/contacts" class="menu__list-link">КОНТАКТЫ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="" class="menu__list-link">ЛИЧНЫЙ КАБИНЕТ</a>
+                                <a href="/sigh_up" class="menu__list-link">РЕГИСТРАЦИЯ</a>
                             </li>
                         </ul>
                     </nav>
@@ -38,13 +38,13 @@
             <section class="login">
                 <div class="container">
                     <h2 class="section-title login__title">Авторизация</h2>
-                    <form action="/log_in" class="form" method="post">
-                        <input type="email" class="form__input" placeholder="Почта">
-                        <input type="password" class="form__input" placeholder="Пароль">
+                    <form class="form" method="post">
+                        <input type="email" class="form__input" name="email" placeholder="Почта" required>
+                        <input type="password" class="form__input" name="password" placeholder="Пароль" required>
                         <button class="form__btn" type="submit">ДАЛЕЕ</button>
                     </form>
                     <p class="login__text">
-                        Нет акккаунта? Зарегистрируйся!
+                        Нет аккаунта? Зарегистрируйся!
                     </p>
                     <form action="/sigh_up" class="form">
                         <button class="form__btn" type="submit">РЕГИСТРАЦИЯ</button>
