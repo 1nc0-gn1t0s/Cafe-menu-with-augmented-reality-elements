@@ -25,10 +25,13 @@
                                 <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
+                                <a class="menu__list-link">Филиалы ресторана "{{ chain.title }}"</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/admin/new_chain" class="menu__list-link">ДОБАВИТЬ СЕТЬ РЕСТОРАНОВ</a>
+                                <a href="/admin/menu/new_branch" class="menu__list-link">ДОБАВИТЬ ФИЛИАЛ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/admin" class="menu__list-link">НАЗАД</a>
                             </li>
                         </ul>
                     </nav>
@@ -37,17 +40,18 @@
         </header>
         <main class="main">
             <div class="cards">
-                {% for chain in restaurant_chains %}
+                {% for branch in branches %}
                     <div class="card">
-                        <h3 class="card-title">{{ chain.title }}</h3>
-                        <p class="card-text"><strong>Телефон:</strong> {{ chain.phone_number }}</p>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='menu') }}" class="menu-button">Меню</a>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='branches') }}" class="menu-button">Филиалы</a>
+                        <h3 class="card-title">{{ branch.address }}</h3>
+                        <p class="card-text"><strong>Номер телефона:</strong>{{ branch.phone_number }}</p>
+                        <p class="card-text"><strong>Ссылка на AR-меню:</strong> <small>https://arcafe.projectswhynot.site/ar_menu/{{ branch.id }}/table</small></p>
+                        <a href="{{ url_for('delete_branch', branch_id=branch.id) }}" class="menu-button">Удалить филиал</a>
                     </div>
                 {% endfor %}
                 </div>
             </div>
         </main>
     </div>
+
 </body>
 </html>

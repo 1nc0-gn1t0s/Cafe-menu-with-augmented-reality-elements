@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -21,13 +22,16 @@
                     <nav class="menu">
                         <ul class="menu__list">
                             <li class="menu__list-item">
+                                <a href="/instruction" class="menu__list-link comp">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
+                            </li>
+                            <li class="menu__list-item">
                                 <a href="/restaurants" class="menu__list-link">КАФЕ И РЕСТОРАНЫ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/sigh_up" class="menu__list-link">РЕГИСТРАЦИЯ</a>
+                                <a href="/sigh_up" class="menu__list-link comp">РЕГИСТРАЦИЯ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/log_in" class="menu__list-link">ЛИЧНЫЙ КАБИНЕТ</a>
+                                <a href="/log_in_role" class="menu__list-link comp">ЛИЧНЫЙ КАБИНЕТ</a>
                             </li>
                         </ul>
                     </nav>
@@ -41,22 +45,24 @@
                     <p class="contacts__text">
                         Обращайтесь по любым вопросам
                     </p>
-                    <form action="#" class="form">
-                        <input type="text" class="form__input" placeholder="Имя">
-                        <input type="email" class="form__input" placeholder="Почта">
-                        <textarea class="form__textarea" placeholder="Ваш вопрос"></textarea>
+                    <form class="form" method="post">
+                        <input class="form__inp" name="name" placeholder="Имя">
+                        <input class="form__inp" name="email" placeholder="Почта">
+                        <textarea class="form__textarea" name="text" placeholder="Ваш вопрос"></textarea>
+                        <div class="flash">
+                            {% for msg in get_flashed_messages() %}
+                                <div class="flash__item">
+                                    <h4>Ошибка!</h4>
+                                    <hr>
+                                    <p>{{ msg }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
                         <button class="form__btn" type="submit">ДАЛЕЕ</button>
                     </form>
                 </div>
             </section>
         </main>
-        <footer class="footer">
-            <div class="footer__copy">
-                <p class="footer__copy-text">
-                    Здесь будет что-то.
-                </p>
-            </div>
-        </footer>
     </div>
 
 </body>

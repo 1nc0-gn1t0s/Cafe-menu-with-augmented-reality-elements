@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <a href="/" class="logo">
+                        <img src="{{ url_for('static', filename='img/logo_white.svg') }}" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__list-item">
+                                <a class="menu__list-link">Добавление нового блюда</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/admin/menu" class="menu__list-link">ОТМЕНА</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <h2 class="section-title sighup__title">Введите основную информацию</h2>
+                <h1 class="section-title sighup__title__note">Поля со звездочками являются обязательными</h1>
+                <form method="post" class="form" enctype="multipart/form-data">
+                    <input class="form__inp" name="dish_name" placeholder="*Название нового блюда">
+                    <textarea class="form__textarea__small" name="description" placeholder="*Описание блюда"></textarea>
+                    <input class="form__inp__small" name="calories" placeholder="*Калории на 100г" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="protein" placeholder="*Белки на 100г" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="fats" placeholder="*Жиры на 100г" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="carbohydrates" placeholder="*Углеводы на 100г" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="scale_x" placeholder="*Ширина блюда в см" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="scale_y" placeholder="*Длина блюда в см" oninput="validateNumberInput(this)">
+                    <input class="form__inp__small" name="scale_z" placeholder="*Высота блюда в см" oninput="validateNumberInput(this)">
+                    <div class="multiselect">
+                        <label class="label__multiselect" for="dish_features">Новое блюдо...</label>
+                        <select name="get_dish_features" id="dish_features" multiple>
+                            {% for dish_feature in dish_features %}
+                                <option value="{{ dish_feature.id }}">{{ dish_feature.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="file-upload-container">
+                        <label class="custom-file-upload">
+                            <input type="file" accept="image/jpeg, image/jpg, image/png" id="photo_file" name="photo" onchange="displayFileNamePhoto()">
+                            *Загрузить фото блюда
+                        </label>
+                        <p id="photo_file_name" style="display: none;"></p>
+                    </div>   
+                    <div class="file-upload-container">
+                        <label class="custom-file-upload">
+                            <input type="file" accept=".gltf, .glb" id="ar_file" name="ar" onchange="displayFileNameAR()">
+                            *Загрузить AR блюда
+                        </label>
+                        <p id="ar_file_name" style="display: none;"></p>
+                    </div>        
+                    <div class="flash">
+                        {% for msg in get_flashed_messages() %}
+                            <div class="flash__item">
+                                <h4>Ошибка!</h4>
+                                <hr>
+                                <p>{{ msg }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="form__btn btm__btn" type="submit">ДАЛЕЕ</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        new MultiSelectTag('dish_features', {
+            rounded: false,
+            shadow: true,
+            placeholder: 'Поиск...',
+            tagColor: {
+                textColor: '#3d77ff',
+                borderColor: '#3d77ff',
+                bgColor: '#e4ecff',
+            },
+            onChange: function(values) {
+                console.log(values)
+            }
+        })
+    </script>
+</body>
+</html>

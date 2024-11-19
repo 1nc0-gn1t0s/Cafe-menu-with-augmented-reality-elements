@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <a href="/" class="logo">
+                        <img src="{{ url_for('static', filename='img/logo_white.svg') }}" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__list-item">
+                                <a class="menu__list-link">Добавление нового филиала</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/admin/branches" class="menu__list-link">ОТМЕНА</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <h2 class="section-title sighup__title">Введите основную информацию</h2>
+                <h1 class="section-title sighup__title__note">Поля со звездочками являются обязательными</h1>
+                <h1 class="section-title sighup__title__note">Пароль является паролем от аккаунта менеджера. Он сможет его поменять.</h1>
+                <form method="post" class="form" enctype="multipart/form-data">
+                    <input class="form__inp" name="address" placeholder="*Адрес нового филиала">
+                    <input id="phone_number" class="form__inp" name="phone_number" placeholder="*Телефон для связи с филиалом" required maxlength="18">
+                    <input class="form__input" name="name" placeholder="*Имя менеджера">
+                    <input class="form__input" name="email" placeholder="*Почта менеджера">
+                    <input type="password" class="form__input" name="password" placeholder="*Пароль">
+                    <input type="password" class="form__input" name="repeating" placeholder="*Повторите пароль">       
+                    <div class="flash">
+                        {% for msg in get_flashed_messages() %}
+                            <div class="flash__item">
+                                <h4>Ошибка!</h4>
+                                <hr>
+                                <p>{{ msg }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="form__btn btm__btn" type="submit">ДАЛЕЕ</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

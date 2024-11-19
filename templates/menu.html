@@ -25,10 +25,10 @@
                                 <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
+                                <a href="/admin/menu/new_dish" class="menu__list-link">ДОБАВИТЬ БЛЮДО</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/admin/new_chain" class="menu__list-link">ДОБАВИТЬ СЕТЬ РЕСТОРАНОВ</a>
+                                <a href="/admin" class="menu__list-link">НАЗАД</a>
                             </li>
                         </ul>
                     </nav>
@@ -37,17 +37,24 @@
         </header>
         <main class="main">
             <div class="cards">
-                {% for chain in restaurant_chains %}
+                {% for dish in menu %}
                     <div class="card">
-                        <h3 class="card-title">{{ chain.title }}</h3>
-                        <p class="card-text"><strong>Телефон:</strong> {{ chain.phone_number }}</p>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='menu') }}" class="menu-button">Меню</a>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='branches') }}" class="menu-button">Филиалы</a>
+                        <h3 class="card-title">{{ dish.title }}</h3>
+                        <p class="card-text"><strong>Описание:</strong> {{ dish.description }}</p>
+                        <p class="card-text"><strong>Энергетическая ценность на 100г:</strong> {{ dish.calories }} кКал, {{ dish.protein }} белка(ов), {{ dish.fats }} жира(ов), {{ dish.carbohydrates }} углерода(ов).</p>
+                        <div class="about">
+                            {% for feature in dish.features|get_dish_features %}
+                                <p class="card-text">{{ feature }}</p>
+                            {% endfor %}
+                        </div>
+                        <img src="{{ url_for('static', filename=dish.photo_path) }}" alt="{{ dish.title }}" class="dish-image">
+                        <a href="{{ url_for('delete_dish', dish_id=dish.id) }}" class="menu-button">Удалить блюдо</a>
                     </div>
                 {% endfor %}
                 </div>
             </div>
         </main>
     </div>
+
 </body>
 </html>

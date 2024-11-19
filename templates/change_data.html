@@ -25,10 +25,7 @@
                                 <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
-                            </li>
-                            <li class="menu__list-item">
-                                <a href="/admin/new_chain" class="menu__list-link">ДОБАВИТЬ СЕТЬ РЕСТОРАНОВ</a>
+                                <a href="/{{ user.role }}" class="menu__list-link">НАЗАД</a>
                             </li>
                         </ul>
                     </nav>
@@ -36,18 +33,30 @@
             </div>
         </header>
         <main class="main">
-            <div class="cards">
-                {% for chain in restaurant_chains %}
-                    <div class="card">
-                        <h3 class="card-title">{{ chain.title }}</h3>
-                        <p class="card-text"><strong>Телефон:</strong> {{ chain.phone_number }}</p>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='menu') }}" class="menu-button">Меню</a>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='branches') }}" class="menu-button">Филиалы</a>
-                    </div>
-                {% endfor %}
+            <section class="sighup">
+                <div class="container">
+                    <h2 class="section-title sighup__title">Изменение данных</h2>
+                    <h1 class="section-title sighup__title__note">Измените данные, которые хотите</h1>
+                    <form method="post" class="form">
+                        <input class="form__input" name="name" placeholder="Новое имя">
+                        <input class="form__input" name="email" placeholder="Новая почта">
+                        <input type="password" class="form__input" name="password_new" placeholder="Новый пароль">
+                        <input type="password" class="form__input" name="password_new_repeating" placeholder="Повторите новый пароль">
+                        <div class="flash">
+                            {% for msg in get_flashed_messages() %}
+                                <div class="flash__item">
+                                    <h4>Ошибка!</h4>
+                                    <hr>
+                                    <p>{{ msg }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="form__btn" type="submit">ДАЛЕЕ</button>
+                    </form>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
+
 </body>
 </html>

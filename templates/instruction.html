@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <a href="/" class="logo">
+                        <img src="{{ url_for('static', filename='img/logo_white.svg') }}" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__list-item">
+                                <a href="/restaurants" class="menu__list-link">КАФЕ И РЕСТОРАНЫ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/contacts" class="menu__list-link">КОНТАКТЫ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/sigh_up" class="menu__list-link comp">РЕГИСТРАЦИЯ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/log_in_role" class="menu__list-link comp">ЛИЧНЫЙ КАБИНЕТ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Нажатие на логотип ARCafe в левом верхнем углу всегда возвращает Вас на главную страницу ARCafe.</h2>
+                    <h2 class="section-title login__title">Создание аккаунта</h2>
+                    <p class="instruction-text">Работа с личным кабинетом не может совершаться с телефона. "С нуля" создается только аккаунт администратора. 
+                        Аккаунт менеджера создается во время создания нового филиала определенной ресторанной сети через аккаунт администратора. Для создания 
+                        аккаунта нажмите на "Регистрация".</p>
+                    <img src="{{ url_for('static', filename='/instruction_photos/index.bmp') }}" class="instruction_image">
+                    <p class="instruction-text">Введите информацию о себе. Пароль должен состоять как минимум из 8 элементов, 
+                        он не может содержать пробелов, в нем должна быть хотя бы одна заглавная и хотя бы одна строчная буквы на латинице. Пароль также должен содержать
+                        как минимум одну цифру.
+                    </p>
+                    <img src="{{ url_for('static', filename='/instruction_photos/sighup.bmp') }}" class="instruction_image">
+                    <p class="instruction-text">Вам нужно будет подтвердить почту и ввести код, присланный Вам на почту. Если во время подтверждения почты позникает ошибка, 
+                        то убедитесь, что VPN на Вашем устройстве выключен.
+                    </p>
+                    <img src="{{ url_for('static', filename='/instruction_photos/code.bmp') }}" class="instruction_image">
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Вход в аккаунт</h2>
+                    <img src="{{ url_for('static', filename='/instruction_photos/role.bmp') }}" class="instruction_image">
+                    <p class="instruction-text">Выберите должность. На одну и ту же почту может быть сделано два аккаунта: аккаунт администратора и аккаунт менеджера.</p>
+                    <img src="{{ url_for('static', filename='/instruction_photos/login.bmp') }}" class="instruction_image">
+                    <p class="instruction-text">Введите данные и войдите в аккаунт. Если Вы не помните пароль, то Вы сможете его изменить.
+                        Вам отправят код на почту для подтверждения.
+                    </p>
+                    <img src="{{ url_for('static', filename='/instruction_photos/new_password_1.bmp') }}" class="instruction_image">
+                    <img src="{{ url_for('static', filename='/instruction_photos/new_password_2.bmp') }}" class="instruction_image">
+                    <img src="{{ url_for('static', filename='/instruction_photos/new_password_3.bmp') }}" class="instruction_image">
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Аккаунт администратора</h2>
+                    <img src="{{ url_for('static', filename='/instruction_photos/admin.bmp') }}" class="instruction_image">
+                    <p class="instruction-text">В аккаунте администратора можно создавать ресторанные сети, добавлять блюда и филиалы.</p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Создание ресторанной сети</h2>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/add_chain.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Заполните все необходимые данные. Окна со звездочками являются обязательными.</p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Создание филиала ресторанной сети</h2>
+                    <p class="instruction-text">Из аккаунта администратора переходим в "Филиалы" нужного ресторана.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/branch.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Вы можеле удалить или добавить филиал. Для удаления филиала нажмите "Удалить филиал".
+                        Чтобы добавить филиал, нажмите на "Добавить филиал" и заполните нужную информацию.
+                    </p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/new_branch.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Зарегистрируйте менеджера. Ему на почту прийдет письмо с паролем и ссылкой на авторизацию.</p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Создание блюда</h2>
+                    <p class="instruction-text">Для просмотра меню ресторанной сети нажмите на "Меню" со страницы аккаунта администратора.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/menu.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Для создания нового блюда нажмите "Добавить блюдо", для удаления -- "Удалить блюдо".</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/new_dish.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Заполните всю необходимую информацию. Поддерживаемые форматы изображений: .jpeg, .jpg и .png. Файлы AR могут быть фармата .gltf или .glb.
+                        Размеры блюда необходимы для корректного отображения AR-меню. Рекомендованный размер маркера отображения AR -- 10*10 сантиметров. AR-маркер один и тот же
+                        для всех заведений:
+                    </p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/hiro.png') }}" class="instruction_image"></p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Аккаунт менеджера</h2>
+                    <p class="instruction-text">На аккаунт менеджера приходят уведомления от пользователей.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/manager.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Менеджер может удалить уведомления по нажатию кнопки "Удалить".</p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Настройка аккаунта</h2>
+                    <p class="instruction-text">Нажмите на "Настройка аккаунта" со страницы пользователя. Заполните поля, которые хотите изменить. Вам не обязательно заполнять все.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/settings.bmp') }}" class="instruction_image"></p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Стандартное меню</h2>
+                    <p class="instruction-text">В обычном меню можно посмотреть рестораны и их блюда, которые будут отображаться с фотографиями и без возможности посмотреть AR.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/photo_restaurants.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/photo_menu.bmp') }}" class="instruction_image"></p>
+                </div>
+                <div class="about__strong">
+                    <h2 class="section-title login__title">Меню в режиме дополненной реальности</h2>
+                    <p class="instruction-text">При переходе по ссылке AR-меню для филиала (ссылку можно найти в описании филиала через аккаунт администратора) открывается страница ввода номера столика.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/table.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">Пользователю необходимо ввести номер своего столика корректно для удобства работы официантов.</p>
+                    <p class="instruction-text"><img src="{{ url_for('static', filename='/instruction_photos/ar_menu.bmp') }}" class="instruction_image"></p>
+                    <p class="instruction-text">далее пользователь может прочитать информацию о каждом блюде и посмотреть эти блюда в режиме дополненной реальности по нажатию соответствующей кнопки.
+                        Пользователь может позвать официанта по кнопке в верхнем правом углу экрана.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <a href="/" class="logo">
+                        <img src="{{ url_for('static', filename='img/logo_white.svg') }}" alt="" class="logo_img">
+                    </a>
+                    <nav class="menu">
+                        <ul class="menu__list">
+                            <li class="menu__list-item">
+                                <a class="menu__list-link">Ресторан "{{ chain.title }}"</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a class="menu__list-link">Адрес: {{ branch.address }}</a>
+                            </li> 
+                            <li class="menu__list-item">
+                                <a class="menu__list-link">Столик: {{ table }}</a>
+                            </li> 
+                            <!-- <li class="menu__list-item">
+                                <a href="/my_order" class="menu__list-link">ЗАКАЗ</a>
+                            </li> -->
+                            <li class="menu__list-item">
+                                <a href="/call_the_waiter/{{ branch.id }}" class="menu__list-link">ПОЗВАТЬ ОФИЦИАНТА</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="cards">
+                {% for dish in menu %}
+                    <div class="card">
+                        <h3 class="card-title">{{ dish.title }}</h3>
+                        <img src="{{ url_for('static', filename=dish.photo_path) }}" alt="{{ dish.title }}" class="dish-image">
+                        <p class="card-text"><strong>Описание:</strong> {{ dish.description }}</p>
+                        <p class="card-text"><strong>Энергетическая ценность на 100г:</strong> {{ dish.calories }} кКал, {{ dish.protein }} белка(ов), {{ dish.fats }} жира(ов), {{ dish.carbohydrates }} углерода(ов).</p>
+                        <div class="about">
+                            {% for feature in dish.features|get_dish_features %}
+                                <p class="card-text">{{ feature }}</p>
+                            {% endfor %}
+                        </div>
+                        <a href="{{ url_for('ar', dish_id=dish.id, branch_id=branch.id) }}" class="menu-button">Смотреть в режиме дополненной реальности</a>
+                        <!-- <a href="{{ url_for('order', branch_id=branch.id, dish_id=dish.id) }}" class="menu-button">Добавить в заказ</a> -->
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

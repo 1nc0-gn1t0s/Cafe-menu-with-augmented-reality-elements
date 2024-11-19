@@ -22,16 +22,22 @@
                     <nav class="menu">
                         <ul class="menu__list">
                             <li class="menu__list-item">
+                                <a class="menu__list-link">МЕНЮ РЕСТОРАНА "{{ chain.title }}"</a>
+                            </li>
+                            <li class="menu__list-item">
                                 <a href="/instruction" class="menu__list-link comp">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/restaurants" class="menu__list-link">КАФЕ И РЕСТОРАНЫ</a>
+                                <a href="/restaurants" class="menu__list-link">НАЗАД</a>
                             </li>
                             <li class="menu__list-item">
                                 <a href="/contacts" class="menu__list-link">КОНТАКТЫ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/sigh_up" class="menu__list-link">РЕГИСТРАЦИЯ</a>
+                                <a href="/sigh_up" class="menu__list-link comp">РЕГИСТРАЦИЯ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/log_in_role" class="menu__list-link comp">ЛИЧНЫЙ КАБИНЕТ</a>
                             </li>
                         </ul>
                     </nav>
@@ -39,36 +45,23 @@
             </div>
         </header>
         <main class="main">
-            <section class="login">
-                <div class="container">
-                    <h2 class="section-title login__title">Авторизация</h2>
-                    <form class="form" method="post">
-                        <input class="form__input" name="email" placeholder="Почта">
-                        <input type="password" class="form__input" name="password" placeholder="Пароль">
-                        <div class="flash">
-                            {% for msg in get_flashed_messages() %}
-                                <div class="flash__item">
-                                    <h4>Ошибка!</h4>
-                                    <hr>
-                                    <p>{{ msg }}</p>
-                                </div>
+            <div class="cards">
+                {% for dish in menu %}
+                    <div class="card">
+                        <h3 class="card-title">{{ dish.title }}</h3>
+                        <p class="card-text"><strong>Описание:</strong>{{ dish.description }}</p>
+                        <p class="card-text"><strong>Энергетическая ценность на 100г:</strong> {{ dish.calories }} кКал, {{ dish.protein }} белка(ов), {{ dish.fats }} жира(ов), {{ dish.carbohydrates }} углерода(ов).</p>
+                        <div class="about">
+                            {% for feature in dish.features|get_dish_features %}
+                                <p class="card-text">{{ feature }}</p>
                             {% endfor %}
                         </div>
-                        <button class="form__btn" type="submit">ДАЛЕЕ</button>
-                    </form>
-                    <p class="login__link">
-                        <a href="/log_in/{{ role }}/remind_password" class="login__remind-password">Я не помню пароль</a>
-                    </p>
-                    <p class="login__text">
-                        Нет аккаунта? Зарегистрируйся!
-                    </p>
-                    <form action="/sigh_up" class="form">
-                        <button class="form__btn" type="submit">РЕГИСТРАЦИЯ</button>
-                    </form>
+                        <img src="{{ url_for('static', filename=dish.photo_path) }}" alt="{{ dish.title }}" class="dish-image">
+                    </div>
+                {% endfor %}
                 </div>
-            </section>
+            </div>
         </main>
     </div>
-
 </body>
 </html>

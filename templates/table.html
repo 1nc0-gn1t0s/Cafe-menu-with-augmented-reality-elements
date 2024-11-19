@@ -22,32 +22,26 @@
                     <nav class="menu">
                         <ul class="menu__list">
                             <li class="menu__list-item">
-                                <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
+                                <a class="menu__list-link">Ресторан "{{ chain.title }}"</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
-                            </li>
-                            <li class="menu__list-item">
-                                <a href="/admin/new_chain" class="menu__list-link">ДОБАВИТЬ СЕТЬ РЕСТОРАНОВ</a>
-                            </li>
+                                <a class="menu__list-link">Адрес: {{ branch.address }}</a>
+                            </li> 
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
         <main class="main">
-            <div class="cards">
-                {% for chain in restaurant_chains %}
-                    <div class="card">
-                        <h3 class="card-title">{{ chain.title }}</h3>
-                        <p class="card-text"><strong>Телефон:</strong> {{ chain.phone_number }}</p>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='menu') }}" class="menu-button">Меню</a>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='branches') }}" class="menu-button">Филиалы</a>
-                    </div>
-                {% endfor %}
-                </div>
+            <div class="container">
+                <h2 class="section-title sighup__title">Введите номер Вашего столика</h2>
+                <form method="post" class="form" enctype="multipart/form-data">
+                    <input class="form__inp" name="table" placeholder="Номер столика">
+                    <button class="form__btn btm__btn" type="submit">ДАЛЕЕ</button>
+                </form>
             </div>
         </main>
     </div>
+
 </body>
 </html>

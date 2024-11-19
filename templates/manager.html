@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CafeAR</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_151515.svg') }}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -23,19 +24,25 @@
                             <li class="menu__list-item">
                                 <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
                             </li>
+                            <li class="menu__list-item">
+                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-        <main class="main"></main>
-        <footer class="footer">
-            <div class="footer__copy">
-                <p class="footer__copy-text">
-                    Здесь будет что-то.
-                </p>
+        <main class="main">
+            <div class="cards">
+                {% for notification in notifications %}
+                    <div class="card">
+                        <h3 class="card-title">{{ notification.text }}</h3>
+                        <a href="{{ url_for('delete_notification', notification_id=notification.id) }}" class="menu-button">Удалить</a>
+                    </div>
+                {% endfor %}
+                </div>
             </div>
-        </footer>
+        </main>
     </div>
 
 </body>

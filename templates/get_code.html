@@ -22,13 +22,16 @@
                     <nav class="menu">
                         <ul class="menu__list">
                             <li class="menu__list-item">
-                                <a class="menu__list-link">Здравствуй, {{ user.name }}</a>
+                                <a href="/instruction" class="menu__list-link comp">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/change_data" class="menu__list-link">НАСТРОЙКИ АККАУНТА</a>
+                                <a href="/restaurants" class="menu__list-link">КАФЕ И РЕСТОРАНЫ</a>
                             </li>
                             <li class="menu__list-item">
-                                <a href="/admin/new_chain" class="menu__list-link">ДОБАВИТЬ СЕТЬ РЕСТОРАНОВ</a>
+                                <a href="/contacts" class="menu__list-link">КОНТАКТЫ</a>
+                            </li>
+                            <li class="menu__list-item">
+                                <a href="/sigh_up" class="menu__list-link comp">РЕГИСТРАЦИЯ</a>
                             </li>
                         </ul>
                     </nav>
@@ -36,18 +39,26 @@
             </div>
         </header>
         <main class="main">
-            <div class="cards">
-                {% for chain in restaurant_chains %}
-                    <div class="card">
-                        <h3 class="card-title">{{ chain.title }}</h3>
-                        <p class="card-text"><strong>Телефон:</strong> {{ chain.phone_number }}</p>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='menu') }}" class="menu-button">Меню</a>
-                        <a href="{{ url_for('set_session', chain_id=chain.id, next='branches') }}" class="menu-button">Филиалы</a>
-                    </div>
-                {% endfor %}
+            <section class="login">
+                <div class="container">
+                    <h2 class="section-title login__title">Новый пароль</h2>
+                    <form class="form" method="post">
+                        <h1 class="section-title sighup__title__note">Ваша почта: {{ email }}</h1>
+                        <button class="form__btn" type="submit">ОТПРАВИТЬ КОД</button>
+                    </form>
+                    <p class="login__link">
+                        <a href="/log_in_role" class="login__remind-password">Назад на страницу входа в аккаунт</a>
+                    </p>
+                    <p class="login__text">
+                        Нет аккаунта? Зарегистрируйся!
+                    </p>
+                    <form action="/sigh_up" class="form">
+                        <button class="form__btn" type="submit">РЕГИСТРАЦИЯ</button>
+                    </form>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
+
 </body>
 </html>
